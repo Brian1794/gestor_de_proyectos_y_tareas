@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Tarea</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Detalles de la Tarea: {{ task.name }}</h1>
+        
+        <div class="task-detail">
+            <p><strong>Responsable:</strong> {{ task.responsible }}</p>
+            <p><strong>Fecha de Inicio:</strong> {{ task.start_date }}</p>
+            {% if task.end_date %}
+            <p><strong>Fecha de Fin:</strong> {{ task.end_date }}</p>
+            {% endif %}
+            <p><strong>Estado:</strong> {{ task.status }}</p>
+            <p><strong>Detalles y Alcance de Tareas:</strong></p>
+            <p>{{ task.details }}</p>
+        </div>
+
+        <div class="task-actions">
+            {% if task.status != 'Finalizada' %}
+            <form action="{{ url_for('complete_task', index=task_index) }}" method="POST">
+                <button type="submit" class="complete-btn"><i class="fas fa-check"></i> Finalizar Tarea</button>
+            </form>
+            {% endif %}
+            <form action="{{ url_for('delete_task', index=task_index) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta tarea?');">
+                <button type="submit" class="delete-btn"><i class="fas fa-trash"></i> Eliminar</button>
+            </form>
+            <a href="{{ url_for('edit_task', index=task_index) }}" class="edit-btn"><i class="fas fa-edit"></i> Editar</a>
+            <a href="{{ url_for('index') }}" class="back-btn"><i class="fas fa-arrow-left"></i> Volver a la lista</a>
+        </div>
+    </div>
+</body>
+</html>

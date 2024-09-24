@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Tareas Completadas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Resumen de Tareas Completadas</h1>
+
+        <!-- Botón para descargar el archivo Excel -->
+        <a href="{{ url_for('download_excel') }}" class="download-btn">
+            <i class="fas fa-file-excel"></i> Descargar Tareas Completadas en Excel
+        </a>
+
+        <div class="chart-container">
+            <canvas id="completedTasksChart"></canvas>
+        </div>
+
+        <div class="responsible-summary">
+            <h2>Tareas Completadas por Responsable</h2>
+            <ul>
+                {% for responsible, count in responsible_data.items() %}
+                <li><strong>{{ responsible }}:</strong> {{ count }} tarea(s)</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="{{ url_for('index') }}" class="back-btn"><i class="fas fa-arrow-left"></i> Volver a la lista de tareas</a>
+    </div>
+
+    <script>
+        var chartData = {{ data | tojson | safe }};
+        
+        var ctx = document.getElementById('completedTasksChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Tareas Completadas',
+                    data: chartData.datasets[0].data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Tareas Completadas por Fecha'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'Tareas completadas: ' + context.parsed.y;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

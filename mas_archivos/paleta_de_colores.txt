@@ -1,0 +1,2 @@
+Rosado oscuro: #c2185b
+Morado medio oscuro: #512da8

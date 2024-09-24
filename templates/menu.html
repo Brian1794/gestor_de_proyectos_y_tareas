@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Proyectos y Tareas - Menú</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Gestor de Proyectos y Tareas</h1>
+        <div class="user-info">
+            <span>Bienvenido, {{ session['user']['name'] }}</span>
+            <button id="themeToggle">Cambiar Tema</button>
+            <a href="{{ url_for('logout') }}" class="logout">Cerrar Sesión</a>
+        </div>
+        <button id="menuToggle">Menú</button>
+    </header>
+
+    <nav class="sidebar">
+        <h2>Menú</h2>
+        <ul>
+            <li><a href="{{ url_for('projects') }}">Proyectos</a></li>
+            <!-- Cambia la referencia del enlace para tareas -->
+            <li><a href="{{ url_for('tasks') }}">Tareas</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Tareas y Proyectos</h2>
+        <p>Selecciona una opción del menú lateral para gestionar tus proyectos y tareas.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Gestor de Proyectos y Tareas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            this.textContent = document.body.classList.contains('dark-theme') ? 'Tema Claro' : 'Tema Oscuro';
+        });
+    </script>
+</body>
+</html>

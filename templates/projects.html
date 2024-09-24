@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Proyectos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background: #333;
+            padding: 15px;
+            color: #fff;
+        }
+        .navbar .menu {
+            position: relative;
+        }
+        .navbar .menu button {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .navbar .dropdown {
+            display: none;
+            position: absolute;
+            background: #444;
+            margin-top: 5px;
+            border-radius: 5px;
+            z-index: 1;
+        }
+        .navbar .dropdown a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+        }
+        .navbar .dropdown a:hover {
+            background: #555;
+        }
+        .navbar .menu:hover .dropdown {
+            display: block;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Gestión de Proyectos</div>
+        <div class="menu">
+            <button>Menú</button>
+            <div class="dropdown">
+                <a href="{{ url_for('index') }}">Tareas</a>
+                <a href="#">Proyectos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Gráfico de Proyectos</h1>
+        <div class="chart-container">
+            <canvas id="projectsPieChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Ejemplo de datos para el gráfico de pastel
+        var pieLabels = ['Proyecto A', 'Proyecto B', 'Proyecto C'];
+        var pieData = [12, 19, 8];
+
+        var ctx = document.getElementById('projectsPieChart').getContext('2d');
+        var pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: pieLabels,
+                datasets: [{
+                    data: pieData,
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribución de Proyectos'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

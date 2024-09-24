@@ -1,0 +1,146 @@
+/* Estilos globales */
+body {
+     font-family: 'Arial', sans-serif;
+     background-color: #f3f3f3;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ .container {
+     max-width: 900px;
+     margin: 50px auto;
+     padding: 20px;
+     background-color: #fff;
+     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+     border-radius: 12px;
+ }
+ 
+ header {
+     text-align: center;
+     margin-bottom: 40px;
+ }
+ 
+ header h1 {
+     font-size: 2.8em;
+     color: #512da8; /* Morado medio oscuro */
+     letter-spacing: 2px;
+ }
+ 
+ /* Estilos del formulario de registro */
+ .register-container {
+     margin: 0 auto;
+     width: 100%;
+     max-width: 400px;
+     background-color: #fff;
+     padding: 25px;
+     border-radius: 12px;
+     box-shadow: 0 4px 10px rgba(81, 45, 168, 0.2);
+     transition: all 0.3s ease-in-out;
+ }
+ 
+ .register-container:hover {
+     box-shadow: 0 6px 20px rgba(81, 45, 168, 0.4);
+ }
+ 
+ h2 {
+     text-align: center;
+     color: #512da8;
+     margin-bottom: 20px;
+ }
+ 
+ label {
+     display: block;
+     margin-bottom: 8px;
+     color: #512da8;
+ }
+ 
+ input[type="text"],
+ input[type="email"],
+ input[type="password"] {
+     width: 100%;
+     padding: 12px;
+     margin-bottom: 15px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     transition: border-color 0.3s ease;
+ }
+ 
+ input[type="text"]:focus,
+ input[type="email"]:focus,
+ input[type="password"]:focus {
+     border-color: #c2185b; /* Rosado oscuro */
+     outline: none;
+ }
+ 
+ button {
+     width: 100%;
+     padding: 12px;
+     background-color: #c2185b;
+     border: none;
+     color: white;
+     font-size: 16px;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+ }
+ 
+ button:hover {
+     background-color: #a91450;
+ }
+ 
+ p {
+     text-align: center;
+     margin-top: 15px;
+ }
+ 
+ a {
+     color: #512da8;
+     text-decoration: none;
+ }
+ 
+ a:hover {
+     text-decoration: underline;
+ }
+ 
+ /* Estilos de alertas */
+ .alert {
+     padding: 15px;
+     background-color: #f44336; /* Rojo para error */
+     color: white;
+     border-radius: 5px;
+     margin-bottom: 20px;
+     text-align: center;
+     transition: opacity 0.3s ease;
+ }
+ 
+ .alert.error {
+     background-color: #c2185b; /* Rosado oscuro */
+ }
+ 
+ .flashes {
+     list-style-type: none;
+     padding: 0;
+ }
+ 
+ .flashes li {
+     padding: 10px 15px;
+     margin: 10px 0;
+     border-radius: 5px;
+     color: #4B0082; /* Color morado oscuro */
+     background-color: #ffffff; /* Fondo blanco */
+     border: 1px solid #4B0082; /* Borde morado oscuro */
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .flashes li.success {
+     background-color: #e0ffe0; /* Fondo verde claro para éxito */
+     border-color: #4CAF50; /* Borde verde */
+     color: #333; /* Texto oscuro */
+ }
+ 
+ .flashes li.error {
+     background-color: #ffe0e0; /* Fondo rojo claro para error */
+     border-color: #f44336; /* Borde rojo */
+     color: #333; /* Texto oscuro */
+ }
+ 
